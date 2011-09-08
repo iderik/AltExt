@@ -1,0 +1,19 @@
+
+#####
+### Code
+#####
+
+# Get data from all connected players when starting script
+I'll have to wait for Lamster (developer of Altitude) to update the "listPlayers" first.
+
+# Log rotation at 4mb
+If currFileSize < prevFileSize, do read "log_old.txt" from prevPos and then set prevPos to 0 and immediatly read from the new log file.
+
+
+
+#####
+### Bugs
+#####
+
+# Escape characters in name (maybe possible)
+If a player has a escapecharacter in the nickname, there might be some undefined behaveiur. I dont think it will effect any crucial parts of the system, but only when the nickname is printed as an output, for example to a terminal stdout. Nothing serious, but it needs to be tested.

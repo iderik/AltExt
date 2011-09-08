@@ -1,0 +1,53 @@
+
+
+#####
+### Usage
+#####
+
+
+
+#####
+### Requirements
+#####
+
+OS			= GNU/Linux and Unix. Windows and OSX has not been tested yet.
+Python		= 2.6
+Database	= SQLite3
+Knowledge	= Basics of Python and Altitude server management
+
+#####
+### Commands
+#####
+
+AltExt loads all commands from Altitude's custom command file (~/altitude/servers/custom_json_commands.txt), so just add your commands there. Do not leave any empty newlines in custom_json_commands.txt! When you hook a function to a command, remember that commandname and eventname isnt the same! For example, if the command is "player.kick" then the event will be "onPlayerKick". It adds a "on", capitalizes the first character and removes all dots ('.').
+
+If you want to restrict a command to a access level, you have to add another item to the JSON-line: {..."access":"am"}. The flags "am" means that only admins and moderators can execute this command. Remember that you must specify this with a access variable in your playerdatabase. More information in Accessranks and Database subjects.
+
+Here is an example of the "custom_json_commands.txt":
+{"name":"player.kick","arguments":["player","string"],"argumentDescriptions":["PlayerName","Reason"],"voteThreshold":0,"access":"am"}
+
+Here is an example of how you can hook a function to that command, in your script:
+[CODE]
+# Call this function when "/player.kick <PlayerName> <Reason>" command is executed
+def PlayerKick(data):
+	serverMan.Write.PlayerKick(data["port"], data["arguments"][0])
+	serverMan.Write.ServerMessage(data["port"], "%s was kicked (reason: %s)" % (data["arguments"][0], data["arguments"][1]))
+
+# Hook function (PlayerKick) to event(onPlayerKick).
+serverMan.Read.onPlayerKick += PlayerKick
+[/CODE]
+
+
+
+#####
+### Database
+#####
+
+
+At this moment, the database manager uses a pre-defined structures which looks like this:
+TABLE		VARIABLES
+Player		(str)vaporId, blabla
+Broadcast	(int)id, (str)msg, (int)interval, (int)expire
+
+Do only modify the variables if you know what you're doing. Most of the variables in the player table are adding directly from "log.txt", so its actually the Altitude server that defines the names. It shouldnt be any problem if you added new variables.
+
