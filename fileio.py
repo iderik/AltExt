@@ -3,7 +3,8 @@
 import os, simplejson, log
 
 #
-# Description: Read, write and parsing files.
+# Name: Filemanager
+# Description: Read, write and parsing files
 # This is a part of AltExt project.
 #
 

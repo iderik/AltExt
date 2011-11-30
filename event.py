@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 
 #
-# Description: Managing eventhooks.
+# Name: Eventobject
+# Description: Event triggering
 # This is a part of AltExt project.
 #
 

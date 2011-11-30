@@ -3,6 +3,7 @@
 import fileio
 
 #
+# Name: Logmanager
 # Description: Logging
 # This is a part of AltExt project.
 #

@@ -1,0 +1,13 @@
+### Distribution
+
+# Github
+You can grab the most recent sourcecode from http://github.com/iderik/altext
+
+
+### Other
+
+# Indenting
+At this moment, the indenting is made with tabs (4 spaces long). It will be changed to spaces only (4 spaces long), to make it compatible with most VIm or Emacs settings. This will only effect if you made your own changes to the code. If the interpretion give you any trouble, this might be the source. There is a few ways to fix this:
+* Manually change your tabs to spaces.
+* Make a script to automaticly change to spaces.
+* Download the new sourcecode from Github and reimplement your changes, but this time with spaces.

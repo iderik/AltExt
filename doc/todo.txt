@@ -17,3 +17,88 @@ If currFileSize < prevFileSize, do read "log_old.txt" from prevPos and then set 
 
 # Escape characters in name (maybe possible)
 If a player has a escapecharacter in the nickname, there might be some undefined behaveiur. I dont think it will effect any crucial parts of the system, but only when the nickname is printed as an output, for example to a terminal stdout. Nothing serious, but it needs to be tested.
+
+
+#####
+### General
+#####
+
+# Commands
+
+When you're about to execute a command, remember to exclude quotes (") and arrows (< or >) from the command. If you leave <playerName> blank on most commands, it will use your own playername as argument. This is to make it easier to run commands against yourself, for example: "/Plr.Info".
+
+"COMMAND" - [ACCESS FLAGS] - (DESCRIPTION) 
+
+"/Help"										[]		(General info about the system)
+"/Help.FAQ"
+"/Help.Commands"
+"/Help.Ranks"
+"/Help.Operators"
+"/Help.Betting"
+"/Commands"									[]		(Prints lists of all commands that you can use)
+
+"/Report.Bug <message>"						[]		(Send bugteports that are related to this system)
+"/Report.Violation <message>"				[]		(Send violationreports. Operators will be notified instantly even if they're offline)
+"/Report.List <page>"						[r]		(Print a list of unsolved reports)
+"/Report.Solve <id>"						[R]		(Mark a report as solved)
+
+"/Plr.Info <playerName>"					[]		(Prints information about a player; VaporId, Rank, GamesPlayed and Accessflags)
+"/Plr.Info.More <playerName>"				[P]		(Same as above but more details: IP, Banned, KickCount, BanCount)
+"/Plr.Info.Nicks <playerName>"				[p]		(Prints of most common and used nicknames of this player. Source is AltiBouncer)
+"/Plr.Kick.Vote	<playerName> <reason>"		[k]		(Casts a votekick towards a player together with a reason)
+"/Plr.Kick <playerName> <reason>"			[K]		(Instantly kicks a player out from the server together with a reason)
+"/Plr.Ban <playerName> <duration> <reason>"	[B]		(Banish a player with duration (17/05-11 is 110517) and a reason)
+"/Plr.Ban.List <page>"						[b]		(Prints a list of all currently banned players)
+"/Plr.Ban.Del <playerName>"					[u]		(Remove a ban from a player)
+"/Plr.Del <playerName>"						[d]		(Delete a player from the database. Player will also be kicked)
+"/Plr.Flags <playerName> <+/-> <flags>		[f]		(Manage accessflags for a player)
+
+"/Art.Print <id>"							[a]		(Prints fun ASCII-art that everyone else can see)
+"/Art.Print <id>"							[A]		(Same as above but more alternatives)
+"/Art.List"									[]		(Prints list of all arts)
+
+"/Map.Change <mapName>"						[M]		()
+"/Map.Next <mapName>"						[m]		()
+
+"/Eco.Balance <playerName>"					[e]		()
+"/Eco.Bet <team> <amount>"					[e]		()
+"/Eco.Top"									[e]		()
+
+"/Srv.Msg <message>"						[s]		(Send a server message)
+"/Srv.Whitelist.Add <playerName>"			[S]		(Makes player always be able to join server even if its full. Server must restart before this takes action)
+"/Srv.Whitelist.Del <playerName>"			[S]		()
+"/Srv.Whitelist.List <page>"				[s]		()
+"/Srv.Whitelist.Once <playerName>"			[s]		()
+"/Srv.Restart"								[S]		(Restart the server)
+"/Scr.Restart"								[S]		(Restart the script)
+"/Scr.Save"									[S]		(Save playerdata to database)
+
+"/Bc.Add <message> <duration> <interval>"	[O]		(Add a broadcast. Duration as date (for 17/05-11 type this: 110517) and duration in minutes)
+"/Bc.Del <id>"								[O]		(Delete a broadcast using Id from the list)
+"/Bc.List <page>"							[O]		(Prints list of all current broadcasts)
+"/Bc.Once <message>"						[o]		(Broadcast that will be announced every 120 minutes, expires after 24 hours, then a new one can be added)
+
+
+
+# Access flags
+
+Any flag can be added or removed from a player, this is not common because group (see below) are faster and safer to use.
+
+
+
+# Access groups
+
+When a player is added to a group, all the related flags will be removed from the player. This is done because there shouldnt be any left over flags if the player is removed from a group.
+
+[%] Admin			= [*]				(Administrators maintains the system and can run any command)
+[@] Mods			= [rRpPkKbBOaAms]	(Moderators prevents rule violation and can run most commands to keep games running like planned)
+[+]	Guide			= [rpkb]			(Guiders are there to give help or guidance to players with questions)
+
+[1] Ranked #1		= [Ao]				(Player that is ranked #1 on highscore)
+[2] Ranked #1-20	= [a]				(Players that are ranked #1 to #20 on highscore)
+[5] Ranked #1-50	= []				(Players that are ranked #1 to #50 on highscore)
+
+[0] Frozen			= [0]				(These players won't be able to join any teams except spectators)
+
+
+
